@@ -1,6 +1,7 @@
 /* this is the example in 
  * https://en.cppreference.com/w/cpp/numeric/random/exponential_distribution
  * I'm just using it as a template.
+ * Note that this webpage mentions point mutations on DNA as a possible application.
  */
 #include <iostream>
 #include <iomanip>
