@@ -32,7 +32,7 @@ int main (int argc, char *argv[])
         }
     }
     for(vector<float> v : array)
-        cout << v << endl;
+        cout << v << endl; // can't do that ... cout only strings.
 
     return 0; 
 }

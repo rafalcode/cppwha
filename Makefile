@@ -1,11 +1,14 @@
 CC=g++
 CFLAGS=-g -Wall
-EXECUTABLES=expdi0 expdi1 ss0 ss1
+EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0
 
 expdi0: expdi0.cpp
 	${CC} ${CFLAGS} -o $@ $^
 
 expdi1: expdi1.cpp
+	${CC} ${CFLAGS} -o $@ $^
+
+v2d0: v2d0.cpp
 	${CC} ${CFLAGS} -o $@ $^
 
 # stringstream

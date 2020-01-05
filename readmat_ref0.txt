@@ -1,0 +1,459 @@
+from
+https://cboard.cprogramming.com/cplusplus-programming/153069-help-cplusplus-file-matrix-program.html
+dks the guru here ... but he's not great either.
+sounds authortative but like a host of other helps
+arbitraty size not conisdered.
+
+Exclamation Help with C++ file matrix program
+
+     Hello
+     I am writing a program that is supposed to read from an input txt
+     file values into a 2d array.
+     The file has about 13500 lines of 75 values each, separated by
+     spaces. at the end of each line there is no space, just '\n'
+     I need to make some operations with the values in the file, so I
+     will have to read the file into a 2d array.
+     The thing is, because of the end of line not having a space
+     character, I am having alot of trouble reading the values into the
+     array.
+     Can anyone help me?
+     Code:
+#include "stdafx.h"
+#include <iostream>
+#include <conio.h>
+#include <time.h>
+#include <fstream>
+#include <cstdlib>
+#include <istream>
+#include <iomanip>
+#include <sstream>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+using namespace std;
+#define SCREEN_HEIGHT 50
+
+
+fstream datafile;                 /*Original data file*/
+ofstream outputfile;
+string infilename,outfilename,A[13316][75],line;
+int option,menuin,menuout,menualg,number_of_lines,col;
+double matrix[13316][75],sum=0;
+
+
+void clrscr()
+{
+    int i;
+    for ( i = 0; i < SCREEN_HEIGHT; i++ )
+        putchar ( '\n' );
+}
+
+
+int readfromfile()                                /*Reads the first line of the
+file into variable "line"*/
+{
+    if (datafile.is_open())
+    {
+        getline (datafile,line);
+        datafile.close();
+    }
+    return 0;
+}
+
+
+int writetofile ()                                /*Test function. Writes "line"
+ to the output file.*/
+{
+    cout << "\nThe line\n \n" << line << "\n\nwas copied variable line" << endl;
+/*Gives feedback of the copied line to user.*/
+    return 0;
+}
+
+
+string Inputfilename()
+{
+    clrscr();
+    cout << "What is the name of your data input file?\n";
+    cin >> infilename;
+    datafile.open(infilename);
+    while(!datafile)
+        {
+            cout << "Filename invalid. Try again!\n";
+            cin >> infilename;
+            datafile.open(infilename);
+        }
+    if (datafile)            /*Verificare existenta fisier*/
+        {
+            cout << "Filename saved. Press any key...\n";
+            getchar();
+        }
+    return infilename;
+}
+
+
+string Outputfilename()
+{
+    clrscr();
+    cout << "What is the name of your data output file?\n";
+    cin >> outfilename;
+    outputfile.open(outfilename);
+    while(!outputfile)
+        {
+            cout << "Filename invalid. Try again!\n";
+            cin >> outfilename;
+            outputfile.open(outfilename);
+        }
+    if (outputfile)        /*Verificare existenta fisier*/
+        {
+            cout << "Filename saved. Press any key...\n";
+            getchar();
+        }
+    return outfilename;
+}
+
+
+int linesinfile()                            /*Calculates the number of lines in
+ datafile(the number of rows in matrix)*/
+{
+    datafile.open(infilename);
+    cout << "Computing number of rows...\n";
+    number_of_lines=0;
+    std::string liney;
+    while (std::getline(datafile, liney))
+    {
+        ++number_of_lines;
+    }
+    datafile.close();
+    std::cout << "Number of rows is: " << number_of_lines <<"\n";
+    return number_of_lines;
+}
+
+
+int columns()                            /*Calculates the number of columns in d
+atafile*/
+{
+    datafile.open(infilename);
+    cout << "Computing number of columns...\n";
+    col=0;
+    for (int i=0;i<=line.size();i++)
+        if (line[i]==' ')
+            col++;
+    col = col++;
+    datafile.close();
+    cout << "Number of columns is: " << col <<"\n";
+    return col;
+}
+
+
+int Algorythm(int N, int M)
+{
+    clrscr();
+    datafile.open(infilename);
+    if(!datafile) //Always test the file open.
+    {
+                cout << "Error opening output file" << endl;
+                system("pause");
+    }
+    cout << "Reading file to a string matrix...\n";
+    while(!datafile.eof())
+    {
+        for(int R=0;R<N;R++)
+            for(int C=0;C<M;C++)
+                getline(datafile,A[R][C],' ');
+    }
+
+
+    cout << A[0][74];
+    /*cout << "Converting string matrix to a double matrix...\n";
+    for(int R=0;R<N;R++)
+        for(int C=0;C<M-1;C++)
+            matrix[R][C] = atof(A[R][C].c_str());
+    for(int i=0;i<M-1;i++)
+        cout << A[0][i] << "\n";
+    cout << A[1][0];
+
+    getchar();
+    cout << "Writing the matrix as double in the output\n";
+    outputfile.open(outfilename);
+    for(int R=0;R<N;R++)
+            for(int C=0;C<M;C++)
+            {
+                matrix[R][C] = stod( A[R][C] );
+                outputfile << matrix[R][C] << ' ';
+            }
+    outputfile.close();*/
+    return 0;
+}
+
+
+int main()
+{
+    cout << "This program reads the 0.3 step data from an input file and generat
+es an output file with 3 step data.\nPress any key to start...\n";
+    Inputfilename();
+    Outputfilename();
+    readfromfile();
+    columns();
+    linesinfile();
+    Algorythm(number_of_lines,col);
+    getchar();
+    return 0;
+}
+         ______________________________________________________________
+
+    2. 12-09-2012 [43]#2
+       [44]dwks
+          + [45]View Profile
+          + [46]View Forum Posts
+          + [47]Visit Homepage
+       dwks is offline
+       Frequently Quite Prolix [48]dwks's Avatar
+         ______________________________________________________________
+
+        Join Date
+                Apr 2005
+
+        Location
+                Canada
+
+        Posts
+                8,057
+
+     It's really quite straightforward. C++ considers all whitespace
+     (spaces, newlines) to be separating characters, so if you say
+     Code:
+int x;
+while(file >> x) {
+    std::cout << "I got " << x << std::endl;
+}
+
+     you'll get in turn each number in the file. If you want to stop
+     reading at the end of a line, just grab the whole line and make a
+     new stream out of it. Here's a working example. I read from std::cin
+     but you could just as easily read from a file.
+     Code:
+$ cat matrix.cpp
+#include <iostream>
+#include <sstream>  // string stream stuff
+#include <string>
+
+int main() {
+    std::string line;
+    while(std::getline(std::cin, line)) {
+        std::istringstream stream(line);  // needs #include <sstream>
+        int x;
+        while(stream >> x) {
+            std::cout << "[" << x << "]";
+        }
+        std::cout << std::endl;
+    }
+    return 0;
+}
+$ cat matrix.txt
+1 2 3 4
+5 6 7 8
+$ ./matrix < matrix.txt
+[1][2][3][4]
+[5][6][7][8]
+$
+
+     In case you're not familiar with UNIX commands, that's just me
+     showing you the source code, the input file, and then the program
+     run with the input file.
+     So from there it's pretty straightforward to build a 2D array, I
+     think. Do you agree? One last point: if you use std::vector then you
+     don't have to worry about e.g. counting the number of lines in
+     advance.
+     [edit] Hint:
+     Code:
+for(i = 0; std::getline(file, line); i ++) {
+    std::istringstream stream(line);
+    for(j = 0; stream >> x; j ++) {
+        array[i][j] = x;
+    }
+}
+
+     [/edit]
+
+     Last edited by dwks; 12-09-2012 at 05:02 PM.
+
+     dwk
+     Seek and ye shall find. quaere et invenies.
+     "Simplicity does not precede complexity, but follows it." -- Alan
+     Perlis
+     "Testing can only prove the presence of bugs, not their absence." --
+     Edsger Dijkstra
+     "The only real mistake is the one from which we learn nothing." --
+     John Powell
+     Other boards: [49]DaniWeb, [50]TPS
+     Unofficial Wiki FAQ: [51]cpwiki.sf.net
+     My website: [52]http://dwks.theprogrammingsite.com/
+     Projects: [53]codeform, [54]xuni, [55]atlantis, [56]nort, [57]etc.
+         ______________________________________________________________
+
+    3. 12-11-2012 [58]#3
+       [59]tempester86
+          + [60]View Profile
+          + [61]View Forum Posts
+       tempester86 is offline
+       Registered User
+         ______________________________________________________________
+
+        Join Date
+                Dec 2012
+
+        Location
+                Fagaras, Romania
+
+        Posts
+                2
+
+     I don't want the program to stop reading at the end of a line. I
+     need the numbers to go into a matrix. As I said, I need to make some
+     calculations with the numbers afterwards. So the matrix is a must.
+     And I don't want the program to stop reading at end of line.
+     Here is a generic example of the format of my file:
+     value1.1[space]value1.2[space]...[space]value1.75[\n]
+     value2.1[space]value2.2[space]...[space]value2.75[\n]
+     ..................................................
+     .......................
+     value13315.1[space]value13315.2[space]...[space]value13315.75[\n]
+     value13316.1[space]value13316.2[space]...[space]value13316.75[\n]
+     The program should read these values in a matrix as follows:
+     A[1][1]=value1.1 and so on.
+     The problem with the program I wrote is when the matrix reading
+     counter reaches the end of the first line it should read
+     A[1][75]=value1.75 and A[2][1]=value2.1. Instead it reads into
+     A[1][75] "value1.75\nvalue2.1" because the getline used in the
+     counter uses ' '(space character) as a separator and does not
+     recognize the \n character as being a separator and just keeps
+     reading until it reaches the ' ' in the second line. You can imagine
+     how that messes up the entire matrix.
+     I am not an advanced C++ user, so I did not understand what your
+     latter examples did.
+     My question is can I modify my existing code in order for it to do
+     what I want or do I have to use more advanced C++ coding?
+         ______________________________________________________________
+
+    4. 12-12-2012 [62]#4
+       [63]dwks
+          + [64]View Profile
+          + [65]View Forum Posts
+          + [66]Visit Homepage
+       dwks is offline
+       Frequently Quite Prolix [67]dwks's Avatar
+         ______________________________________________________________
+
+        Join Date
+                Apr 2005
+
+        Location
+                Canada
+
+        Posts
+                8,057
+
+     Quote Originally Posted by tempester86 [68]View Post
+
+     I don't want the program to stop reading at the end of a line. I
+     need the numbers to go into a matrix.
+     Perhaps that was badly worded. What I meant was, you want the
+     program to realize when it reaches the end of a line so that it can
+     go onto the next row of the matrix. Essentially, reading in all the
+     numbers as just a single sequence is very easy, but you want to know
+     where the line-ends are so that you end up with a matrix, not a
+     super-huge vector.
+     The problem with the program I wrote is when the matrix reading
+     counter reaches the end of the first line it should read
+     A[1][75]=value1.75 and A[2][1]=value2.1. Instead it reads into
+     A[1][75] "value1.75\nvalue2.1" because the getline used in the
+     counter uses ' '(space character) as a separator and does not
+     recognize the \n character as being a separator and just keeps
+     reading until it reaches the ' ' in the second line. You can imagine
+     how that messes up the entire matrix.
+     What you are doing is far more work! You're reading in stuff as
+     strings and then converting to numbers later on. Why not just read
+     in numbers directly?
+     Look, maybe another example will make things clearer.
+     Code:
+#include <iostream>  // for cout, getline
+#include <fstream>  // for ifstream
+#include <sstream>  // for istringstream
+#include <string>   // for string
+
+int main() {
+    std::ifstream file("data.txt");  // assume the file opens correctly
+
+    int matrix[10][10];
+    int row = 0, col = 0;
+
+    std::string line;
+    while(std::getline(file, line)) {  // read each line from the file
+        // okay we have a line, let's extract the numbers on this line
+        // this is an "input string stream", a stream formed from a string
+        std::istringstream stream(line);
+
+        int x;
+        col = 0;  // reset column counter
+        while(stream >> x) {  // keep trying to read ints until there are no mor
+e
+            matrix[row][col] = x;
+            col ++;
+        }
+
+        // okay that's all the data on this line, go to the next line
+        row ++;
+    }
+
+    // now let's print out the data we read into the matrix.
+    // At this point, row tells us how many rows there are, and
+    // we never reset col so col still tells us how many values were on
+    // the last line (let's hope this is the same as the other rows of the
+    // matrix).
+    for(int i = 0; i < row; i ++) {
+        for(int j = 0; j < col; j ++) {
+            std::cout << '(' << matrix[i][j] << ") ";
+        }
+        std::cout << "\n";
+    }
+    return 0;
+}
+
+     If I have this in data.txt
+     Code:
+1 2 3
+4 5 6
+7 7 8
+3 2 1
+
+     then when I run the program I see this as output:
+     Code:
+(1) (2) (3)
+(4) (5) (6)
+(7) (7) (8)
+(3) (2) (1)
+
+     I print parentheses around the numbers so that you can see it really
+     did parse them into the matrix, otherwise the output looks identical
+     to the input.
+     This isn't really very advanced C++ coding. It's very standard stuff
+     for processing text files. You might be able to hack something else
+     together for now but you'll still have trouble reading files as
+     input later on. Might as well make an attempt at learning some of
+     this now. You can ask specific questions if you don't understand, or
+     go looking for other material online. But to be honest your code is
+     a bit of a mess... I mean why are you doing this?
+     Code:
+getline(datafile,A[R][C],' ');
+
+     If you want to read ints, just say "datafile >> x" and be done with
+     it. Why is A an array of an array of strings? Aren't matrices
+     usually numbers? And so on.
+     [edit] Re-reading your input file format again, I'm wondering if you
+     actually see the string "value" in your file over and over again...
+     that would be kind of strange, but if you do you could just call
+     stream.get() repeatedly until you see (say) an 'e', and then read a
+     number with "stream >> x". [/edit]
+
+     Last edited by dwks; 12-12-2012 at 05:33 PM.
