@@ -1,6 +1,6 @@
 CPP=g++
 CFLAGS=-g -Wall
-EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma
+EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot
 
 expdi0: expdi0.cpp
 	${CPP} ${CFLAGS} -o $@ $^
@@ -9,6 +9,12 @@ expdi1: expdi1.cpp
 	${CPP} ${CFLAGS} -o $@ $^
 
 v2d0: v2d0.cpp
+	${CPP} ${CFLAGS} -o $@ $^
+
+spea: spea.cpp
+	${CPP} ${CFLAGS} -o $@ $^
+
+iot: iot.cpp
 	${CPP} ${CFLAGS} -o $@ $^
 
 # stringstream
