@@ -8,16 +8,16 @@
 
 using namespace std;
 
-double calculateMean(const vector<float>& arr)
+double calculateMean(const vector<int>& arr)
 {
-    float sum = 0;
-    for (float num : arr) {
+    int sum = 0;
+    for (int num : arr) {
         sum += num;
     }
     return static_cast<double>(sum) / arr.size();
 }
 
-double calculateSpearmanCorrelation(const vector<float>& arr1, const vector<float>& arr2)
+double calculateSpearmanCorrelation(const vector<int>& arr1, const vector<int>& arr2)
 {
     // Create vectors to store ranks
     vector<int> rank1(arr1.size());
@@ -47,8 +47,8 @@ double calculateSpearmanCorrelation(const vector<float>& arr1, const vector<floa
 int main()
 {
     // Example sequences, replace with your own data
-    vector<float> sequence1 = {-0.24321323, 1.59399371 -0.02146998, 0.54616998, 0.39628932 -0.71116629, 0.64395435, 0.10739505 -0.50595763, -2.16478077};
-    vector<float> sequence2 = {-0.2658534, 2.0528267 -1.3254755, 1.0151804, 0.4416056, -0.7238196, 1.1153770, -1.2665704, -0.9436046, -3.1024975};
+    vector<int> sequence1 = {1, 2, 3, 4, 5};
+    vector<int> sequence2 = {3, 5, 4, 1, 1};
 
     // Calculate Spearman correlation
     double spearmanCorrelation = calculateSpearmanCorrelation(sequence1, sequence2);
