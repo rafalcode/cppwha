@@ -1,6 +1,6 @@
 CPP=g++
 CFLAGS=-g -Wall
-EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot
+EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot sor
 
 expdi0: expdi0.cpp
 	${CPP} ${CFLAGS} -o $@ $^
@@ -12,6 +12,9 @@ v2d0: v2d0.cpp
 	${CPP} ${CFLAGS} -o $@ $^
 
 spea: spea.cpp
+	${CPP} ${CFLAGS} -o $@ $^
+
+sor: sor.cpp
 	${CPP} ${CFLAGS} -o $@ $^
 
 iot: iot.cpp
