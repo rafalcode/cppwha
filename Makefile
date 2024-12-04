@@ -1,6 +1,6 @@
 CPP=g++
 CFLAGS=-g -Wall
-EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot sor maz0 gmaz ar ut0 ut1 ut2 gp0 gcai
+EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot sor maz0 gmaz ar ut0 ut1 ut2 gp0 gcai gp1
 
 expdi0: expdi0.cpp
 	${CPP} ${CFLAGS} -o $@ $^
@@ -51,6 +51,9 @@ ut2: ut2.cpp
 	${CPP} -std=c++11 ${CFLAGS} -o $@ $^
 
 gp0: gp0.cpp
+	${CPP} ${CFLAGS} -I/usr/include/libxml2 -o $@ $^ -lxml2 
+
+gp1: gp1.cpp
 	${CPP} ${CFLAGS} -I/usr/include/libxml2 -o $@ $^ -lxml2 
 
 gcai: gcai.cpp
