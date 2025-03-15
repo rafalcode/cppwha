@@ -1,6 +1,6 @@
 CPP=g++
 CFLAGS=-g -Wall
-EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot sor maz0 gmaz ar ut0 ut1 ut2 gp0 gcai gp1
+EXECUTABLES=expdi0 expdi1 ss0 ss1 v2d0 ma spea iot sor maz0 gmaz ar ut0 ut1 ut2 gp0 gcai gp1 wkda0 traord
 
 expdi0: expdi0.cpp
 	${CPP} ${CFLAGS} -o $@ $^
@@ -58,6 +58,12 @@ gp1: gp1.cpp
 
 gcai: gcai.cpp
 	${CPP} ${CFLAGS} -o $@ $^ -lcairo -lcurl -ltinyxml2
+
+wkda0: wkda0.cpp
+	${CPP} ${CFLAGS} -o $@ $^
+
+traord: traord.cpp
+	${CPP} ${CFLAGS} -o $@ $^
 
 .PHONY: clean
 
